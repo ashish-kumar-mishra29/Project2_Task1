@@ -1,0 +1,44 @@
+<div class="body">
+  <section class="container">
+    <header>Login Form</header>
+    <form class="form" [formGroup]="data" (ngSubmit)="send()">
+      <div class="input-box">
+        <label>Email Address</label>
+        <input
+          type="text"
+          name="to_email"
+          placeholder="Enter email address"
+          formControlName="to_email"
+        />
+      </div>
+      @if((data.controls['to_email'].dirty || data.controls['to_email'].touched)
+      && data.hasError('required','to_email')){
+      <small>*Email is required</small>
+      }
+
+      <div class="column">
+        <div class="input-box">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            formControlName="password"
+          />
+        </div>
+      </div>
+      @if((data.controls['password'].dirty || data.controls['password'].touched)
+      && data.hasError('required','password')){
+      <small>*Password is required</small>
+      }
+      <button type="submit" [disabled]="!data.valid" >
+        Log In
+      </button>
+
+      <button type="submit" (click)="onLogIn()">
+        Reset Password
+      </button>
+      <!-- <button type="submit" [disabled]="!data.valid" (click)="onLogIn()">Forget Password</button> -->
+    </form>
+  </section>
+</div>

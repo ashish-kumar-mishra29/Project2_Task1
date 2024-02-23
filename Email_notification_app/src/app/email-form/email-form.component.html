@@ -1,0 +1,43 @@
+<div class="body">
+    <section class="container">
+      <header>Registration Form</header>
+      <form class="form" [formGroup]="FormData" (ngSubmit)="send()">
+        <div class="input-box">
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter full name"  formControlName="to_name"/>
+        </div>
+        @if((FormData.controls['to_name'].dirty || FormData.controls['to_name'].touched) && FormData.hasError('required','to_name')){
+          <small>*Name is required</small>
+        }
+        
+        <div class="input-box">
+          <label>Email Address</label>
+          <input type="text" placeholder="Enter email address"  formControlName="to_email"/>
+        </div>
+        @if((FormData.controls['to_email'].dirty || FormData.controls['to_email'].touched) && FormData.hasError('required','to_email')){
+          <small>*Email is required</small>
+        }
+        <div class="column">
+          <div class="input-box">
+            <label>Phone Number</label>
+            <input type="text" placeholder="Enter phone number"  formControlName="number"/>
+          </div>
+        </div>
+        @if((FormData.controls['number'].dirty || FormData.controls['number'].touched)  && FormData.hasError('required','number')){
+          <small>*Number is required</small>
+        }
+        <div class="column">
+          <div class="input-box">
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password"  formControlName="password"/>
+          </div>
+        </div>
+        @if((FormData.controls['password'].dirty || FormData.controls['password'].touched) && FormData.hasError('required','password')){
+          <small>*Password is required</small>
+        }
+        
+        <button type="submit" [disabled]="!FormData.valid" (click)="submit()">Register</button>
+      </form>
+    </section>
+  </div>
+  <router-outlet></router-outlet>
